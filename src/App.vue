@@ -21,11 +21,6 @@ const closeDrawer = () => {
   drawerOpen.value = false
 }
 
-/* const sortBy = ref('')
-const onChangeSelect = (event) => {
-  sortBy.value = event.target.value
-} */
-
 const addToCart = (item) => {
   cart.value.push(item)
   item.isAdded = true
@@ -33,7 +28,11 @@ const addToCart = (item) => {
 
 const removeFromCart = (item) => {
   cart.value.splice(cart.value.indexOf(item), 1)
-  item.isAdded = false
+
+  const itemIndex = items.value.findIndex(({ id }) => id === item.id)
+  if (itemIndex !== -1) {
+    items.value[itemIndex].isAdded = false
+  }
 }
 
 const onClickPlus = (item) => {
@@ -42,7 +41,6 @@ const onClickPlus = (item) => {
   } else {
     removeFromCart(item)
   }
-  console.log(cart)
 }
 
 onMounted(async () => {
@@ -62,18 +60,6 @@ onMounted(async () => {
     isAdded: cart.value.some((cartItem) => cartItem.id === item.id),
   }))
 })
-
-/* watch(sortBy, async () => {
-  try {
-    const { data } = await axios.get(
-      'https://dff36f8c545aa7bb.mokky.dev/items?sortBy=' + sortBy.value,
-    )
-
-    items.value = data
-  } catch (err) {
-    console.log(err)
-  }
-}) */
 
 watch(
   cart,
@@ -101,12 +87,6 @@ provide('cart', {
     <div class="p-10">
       <div class="flex justify-between items-center">
         <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
-
-        <!-- select @change="onChangeSelect" class="py-2 px-3 border rounded-md outline-none">
-          <option value="name">По названию (A-Z)</option>
-          <option value="price">Сначала дешевле</option>
-          <option value="-price">Сначала дороже</option>
-        </select -->
       </div>
       <CardList :items="items" @addToCart="onClickPlus" />
     </div>
