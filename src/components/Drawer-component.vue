@@ -16,9 +16,9 @@ defineProps({
 
     <div class="flex flex-col mt-5">
       <div>
-        <div class="flex gap-1">
+        <div class="flex items-baseline gap-1">
           <span>Итого:</span>
-          <div class="flex-1 border-b border-dashed h-5"></div>
+          <div class="flex-1 border-b border-dashed"></div>
           <b>{{ totalPrice }} руб.</b>
         </div>
       </div>

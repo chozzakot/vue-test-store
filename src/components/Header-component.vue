@@ -16,24 +16,12 @@ defineProps({
       </div>
     </div>
 
-    <ul class="flex items-center gap-10">
-      <li
-        @click="openDrawer"
-        class="flex items-center cursor-pointer gap-3 text-gray-500 hover:text-black"
-      >
-        <img src="/cart.svg" alt="Cart" />
-        <b>{{ totalPrice }} руб.</b>
-      </li>
-
-      <!-- li class="flex items-center cursor-pointer gap-3 text-gray-500 hover:text-black">
-        <img src="/heart.svg" alt="Favorites" />
-        <span>Избранное</span>
-      </li>
-
-      <li class="flex items-center cursor-pointer gap-3 text-gray-500 hover:text-black">
-        <img src="/profile.svg" alt="Profile" />
-        <span>Профиль</span>
-      </li -->
-    </ul>
+    <div
+      @click="openDrawer"
+      class="flex items-center cursor-pointer gap-3 text-gray-500 hover:text-black"
+    >
+      <img src="/cart.svg" alt="Cart" />
+      <b>{{ totalPrice }} руб.</b>
+    </div>
   </header>
 </template>
