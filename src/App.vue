@@ -55,10 +55,9 @@ onMounted(async () => {
   const localCart = localStorage.getItem('cart')
   cart.value = localCart ? JSON.parse(localCart) : []
 
-  items.value = items.value.map((item) => ({
-    ...item,
-    isAdded: cart.value.some((cartItem) => cartItem.id === item.id),
-  }))
+  items.value.forEach((item) => {
+    item.isAdded = cart.value.some((cartItem) => cartItem.id === item.id)
+  })
 })
 
 watch(
